@@ -8,11 +8,11 @@ object casaDePepeYJulian {
 	
 	method cantidadDeCosasCompradas(){return cosas.size()}
 	
-	method tieneComida(){return cosas.any({objeto => objeto.esComida()})}
+	method tieneComida(){return cosas.last({objeto => objeto.esComida()})}
 	
-	method vieneDeEquiparse(){}
+	method vieneDeEquiparse(){return cosas.last().esElectrodomestico() or cosas.last().precio() > 5000}
 	
-	method esDerrochona(){}
+	method esDerrochona(){return cosas.sum() >= 9000}
 	
 	method compraMasCara(){}
 	
