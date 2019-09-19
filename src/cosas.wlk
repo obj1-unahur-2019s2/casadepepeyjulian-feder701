@@ -68,16 +68,23 @@ object unaCompu{
 	method precio() { return 500 * dolar.cotizacion() }
 	method esComida() { return false }
 	method esElectrodomestico() { return true }	}
-
-object packDeCommida{
-	method precio() { return 1200 }
-	method esComida() { return false }
-	method esElectrodomestico() { return true }	
+///////////////////////////////////////////////////////////
+object packDeComida{
+	var plato  
+	var aderezo
+	
+	method precio() {return plato.precio() + aderezo.precio() }
+	method esComida() { return true }
+	method esElectrodomestico() { return false }	
 }
 
 object packDeRegalo{
-	method precio() { return 1200 }
-	method esComida() { return false }
-	method esElectrodomestico() { return true }	
+	var componentes =[]
+	
+	
+	method poner(comp){componentes.add(comp)}
+	method precio() { return componentes.sum({comida => comida.precio()})* 0.8 }
+	method esComida() { return componentes.all({comida => comida.esComida()}) }
+	method esElectrodomestico() { return componentes.any({electrodomestico => electrodomestico.esElectrodomestico()}) }	
 }
 
